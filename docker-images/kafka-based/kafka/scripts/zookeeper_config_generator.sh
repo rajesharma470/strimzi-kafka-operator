@@ -51,7 +51,7 @@ while [[ $NODE -le $ZOOKEEPER_NODE_COUNT ]]; do
     if [[ $NODE -eq $ZOOKEEPER_ID ]] && [[ $ZOOKEEPER_NODE_COUNT -gt 2 ]] && [[ $(version "$KAFKA_VERSION") -ge $(version "3.4.1") ]]; then
       echo "server.${NODE}=0.0.0.0:2888:3888:participant;127.0.0.1:12181"
     else
-      echo "server.${NODE}=${BASE_HOSTNAME}-$((NODE-1)).${BASE_FQDN}:2888:3888:participant;127.0.0.1:12181"
+      echo "server.${NODE}=${BASE_HOSTNAME}-$((NODE-1)).${BASE_FQDN}.cluster.local:2888:3888:participant;127.0.0.1:12181"
     fi
     (( NODE=NODE+1 ))
 done
